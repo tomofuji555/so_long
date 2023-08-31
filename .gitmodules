@@ -1,6 +1,0 @@
-[submodule "ft_printf"]
-	path = ft_printf
-	url = git@vogsphere-v2.42tokyo.jp:vogsphere/intra-uuid-87cb471b-1891-4c56-807d-be5761cc0b09-4740964-tofujiwa
-[submodule "get_next_line"]
-	path = get_next_line
-	url = git@vogsphere-v2.42tokyo.jp:vogsphere/intra-uuid-3e28ac8c-f853-4303-a4f2-a4427586a449-4693383-tofujiwa
