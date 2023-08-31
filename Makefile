@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tofujiwa <tofujiwa@student.42.fr>          +#+  +:+       +#+         #
+#    By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/16 15:16:40 by tofujiwa          #+#    #+#              #
-#    Updated: 2023/08/19 19:24:04 by tofujiwa         ###   ########.fr        #
+#    Created: 2023/08/31 15:26:11 by tofujiwa          #+#    #+#              #
+#    Updated: 2023/08/31 15:41:30 by tofujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
-SRCS = main.c
+SRCS = read_map.c main.c, 
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
+	make -C ft_printf
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
 
 %.o: %.c

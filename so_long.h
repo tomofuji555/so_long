@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tofujiwa <tofujiwa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 15:20:02 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/08/19 19:18:46 by tofujiwa         ###   ########.fr       */
+/*   Created: 2023/08/31 15:25:38 by tofujiwa          #+#    #+#             */
+/*   Updated: 2023/08/31 16:15:15 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define SO_LONG_H
 
 #include <stdio.h>
+#include <fcntl.h>
 #include <mlx.h>
+#include "get_next_line/get_next_line.h"
+
 
 enum {
 	ON_KEYDOWN = 2,

@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 15:32:38 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/08/31 15:55:57 by tofujiwa         ###   ########.fr       */
+/*   Created: 2023/08/31 15:24:49 by tofujiwa          #+#    #+#             */
+/*   Updated: 2023/08/31 17:06:20 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	make_double_array(char *str, size_t i)
 {
-	int	fd;
+	char	**p;
 
-	if (argc <= 1)
-		exit (1);
-	fd = open (argv[1], O_RDONLY);
-	if (fd < 0)
-		ft_printf ("Error\nopen_error");
-	read_map(fd);
+	p = (char **)malloc(sizeof (char *) * i);
+	
+}
+
+void	read_map(int fd)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	while (1)
+	{
+		str = get_next_line (fd);
+		if (str == NULL)
+			break ;
+		i++;
+	}
+	
 }
