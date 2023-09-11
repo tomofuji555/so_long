@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tofujiwa <tofujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:25:38 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/09/11 20:19:43 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:42:56 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <mlx.h>
-#include "get_next_line/get_next_line.h"
-#include "ft_printf/ft_printf.h"
+# include <stdio.h>
+# include <fcntl.h>
+# include <mlx.h>
+# include "get_next_line/get_next_line.h"
+# include "ft_printf/ft_printf.h"
 
 enum {
 	ARG_ERROR = 1001,
@@ -76,7 +76,6 @@ typedef struct s_stack
 	int		max;
 }	t_stack;
 
-
 // typedef struct	s_data {
 // 	void	*img;
 // 	char	*addr;
@@ -98,8 +97,6 @@ void	print_error(int num);
 char	**copy_map(t_map *map);
 void	check_map(char **argv, t_map *map);
 void	check_wasd(char **map_data, int y, int x);
-void	check_path (char **map_data, t_map *map, t_move *move);
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-// void	mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*f)(), void *param);
+void	check_path(char **map_data, t_map *map, t_move *move);
 
 #endif

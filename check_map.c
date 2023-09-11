@@ -19,7 +19,7 @@ static int	map_name_correct(char *argv)
 	i = ft_strlen (argv);
 	if (i < 5)
 		return (0);
-	if (argv[i - 1] != 'r'|| argv[i - 2] != 'e' || argv[i - 3] != 'b'
+	if (argv[i - 1] != 'r' || argv[i - 2] != 'e' || argv[i - 3] != 'b'
 		|| argv[i - 4] != '.')
 		return (0);
 	return (1);
@@ -102,7 +102,6 @@ static int	is_rectangle(t_map *map)
 void	check_map(char **argv, t_map *map)
 {
 	count_elements (map);
-	// ft_printf ("%d\n", map->count_c);
 	if (!map_name_correct(argv[1]))
 		print_error (MAP_NAME_ERROR);
 	else if (map->height == map->width || !is_rectangle (map))

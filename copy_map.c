@@ -39,8 +39,6 @@ char	**copy_map(t_map *map)
 	map_data = (char **)malloc(sizeof(char *) * (map->height) + 1);
 	if (!map_data)
 		exit (1);
-	// map_data[i] = (char *)malloc(sizeof(char) * (map->width + 1));
-	// if (map)
 	while (i < map->height)
 	{
 		map_data[i] = strcpy_malloc (map->str[i], map);

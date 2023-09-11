@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tofujiwa <tofujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:24:49 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/09/09 00:32:30 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:41:08 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	until_newline(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while(str[i] != '\n' && str[i] != '\0' && str[i] != '\r')
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	return (i);
 }
@@ -39,9 +39,7 @@ static void	count_height(int fd, t_map *map)
 		i++;
 	}
 	if (i == 0 && str == NULL)
-			print_error (MAP_IS_EMPTY);
-	// if (i == 0)
-	// 	print_error(NOT_SURROUND_WALL);
+		print_error (MAP_IS_EMPTY);
 	free (str);
 	close (fd);
 }

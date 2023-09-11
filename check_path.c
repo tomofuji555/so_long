@@ -12,10 +12,11 @@
 
 #include "so_long.h"
 
-static void	where_is_P(char **map_data, t_map *map, t_move *move)
+static void	where_is_p(char **map_data, t_map *map, t_move *move)
 {
 	int	i;
 	int	j;
+
 	i = 0;
 	while (i < map->height)
 	{
@@ -66,9 +67,9 @@ static int	is_done_all_path(char **map_data, t_map *map)
 	return (1);
 }
 
-void	check_path (char **map_data, t_map *map, t_move *move)
+void	check_path(char **map_data, t_map *map, t_move *move)
 {
-	where_is_P (map_data, map, move);
+	where_is_p (map_data, map, move);
 	check_wasd (map_data, move->p_y, move->p_x);
 	is_done_all_path (map_data, map);
 	if (!is_done_all_path (map_data, map))
