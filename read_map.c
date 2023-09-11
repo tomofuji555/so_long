@@ -3,27 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
+/*   By: tofujiwa <tofujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:24:49 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/08/31 17:06:20 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/09 00:32:30 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	make_double_array(char *str, size_t i)
+static int	until_newline(char *str)
 {
-	char	**p;
+	int	i;
 
-	p = (char **)malloc(sizeof (char *) * i);
-	
+	i = 0;
+	if (!str)
+		return (0);
+	while(str[i] != '\n' && str[i] != '\0' && str[i] != '\r')
+		i++;
+	return (i);
 }
 
-void	read_map(int fd)
+static void	count_height(int fd, t_map *map)
 {
 	char	*str;
-	size_t	i;
+	int		i;
 
 	i = 0;
 	while (1)
@@ -31,7 +35,40 @@ void	read_map(int fd)
 		str = get_next_line (fd);
 		if (str == NULL)
 			break ;
+		(map->height) = (map->height) + 1;
 		i++;
 	}
-	
+	if (i == 0 && str == NULL)
+			print_error (MAP_IS_EMPTY);
+	// if (i == 0)
+	// 	print_error(NOT_SURROUND_WALL);
+	free (str);
+	close (fd);
+}
+
+char	**read_map(char **argv, int fd, t_map *map)
+{
+	char		**d_map;
+	int			i;
+	int			j;
+
+	i = 0;
+	j = 0;
+	count_height (fd, map);
+	fd = open (argv[1], O_RDONLY);
+	d_map = (char **)malloc(sizeof (char *) * ((map->height) + 1));
+	if (!d_map)
+		print_error (MALLOC_ERROR);
+	while (i < (map->height))
+	{
+		d_map[i] = get_next_line (fd);
+		j = until_newline(d_map[i]);
+		d_map[i][j] = '\0';
+		i++;
+	}
+	d_map[i] = NULL;
+	map->width = j;
+	map->height = i;
+	close (fd);
+	return (d_map);
 }
