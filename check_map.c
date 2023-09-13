@@ -43,7 +43,7 @@ static void	count_elements(t_map *map)
 			else if (map->str[i][j] == 'E')
 				map->count_e = map->count_e + 1;
 			else if (map->str[i][j] != '0' && map->str[i][j] != '1')
-				print_error (ELEMENTS_ERROR);
+				print_error (MAP_ERROR);
 			j++;
 		}
 		i++;
@@ -103,11 +103,11 @@ void	check_map(char **argv, t_map *map)
 {
 	count_elements (map);
 	if (!map_name_correct(argv[1]))
-		print_error (MAP_NAME_ERROR);
-	else if (map->height == map->width || !is_rectangle (map))
-		print_error (NOT_RECTANGLE);
-	else if (map->count_p != 1 || map->count_e != 1 || map->count_c < 1)
-		print_error (ELEMENTS_ERROR);
+		print_error (MAP_ERROR);
 	else if (!is_surrounded_wall(map))
-		print_error (NOT_SURROUND_WALL);
+		print_error (MAP_ERROR);
+	else if (map->height == map->width || !is_rectangle (map))
+		print_error (MAP_ERROR);
+	else if (map->count_p != 1 || map->count_e != 1 || map->count_c < 1)
+		print_error (MAP_ERROR);
 }

@@ -20,7 +20,7 @@ static char	*strcpy_malloc(char *str, t_map *map)
 	i = 0;
 	rt = (char *)malloc(sizeof(char) * (map->width + 1));
 	if (!rt)
-		exit (1);
+		print_error (MALLOC_ERROR);
 	while (i < map->width)
 	{
 		rt[i] = str[i];
@@ -38,7 +38,7 @@ char	**copy_map(t_map *map)
 	i = 0;
 	map_data = (char **)malloc(sizeof(char *) * (map->height) + 1);
 	if (!map_data)
-		exit (1);
+		print_error (MALLOC_ERROR);
 	while (i < map->height)
 	{
 		map_data[i] = strcpy_malloc (map->str[i], map);

@@ -35,19 +35,20 @@ static void	where_is_p(char **map_data, t_map *map, t_move *move)
 	}
 }
 
-void	check_wasd(char **map_data, int y, int x)
+void	recursive_dfs(char **map_data, int y, int x)
 {
 	if (map_data[y][x] != '1')
 	{
 		map_data[y][x] = '1';
-		check_wasd (map_data, y - 1, x);
-		check_wasd (map_data, y + 1, x);
-		check_wasd (map_data, y, x - 1);
-		check_wasd (map_data, y, x + 1);
+		ft_printf ("y = %d, x = %d\n", y, x);
+		recursive_dfs (map_data, y - 1, x);
+		recursive_dfs (map_data, y + 1, x);
+		recursive_dfs (map_data, y, x - 1);
+		recursive_dfs (map_data, y, x + 1);
 	}
 }
 
-static int	is_done_all_path(char **map_data, t_map *map)
+static int	is_collect_exit(char **map_data, t_map *map)
 {
 	int	i;
 	int	j;
@@ -70,8 +71,8 @@ static int	is_done_all_path(char **map_data, t_map *map)
 void	check_path(char **map_data, t_map *map, t_move *move)
 {
 	where_is_p (map_data, map, move);
-	check_wasd (map_data, move->p_y, move->p_x);
-	is_done_all_path (map_data, map);
-	if (!is_done_all_path (map_data, map))
-		print_error (NOT_PLATABLE);
+	recursive_dfs (map_data, move->p_y, move->p_x);
+	is_collect_exit (map_data, map);
+	if (!is_collect_exit (map_data, map))
+		print_error (MAP_ERROR);
 }
