@@ -36,7 +36,7 @@ char	**copy_map(t_map *map)
 	int		i;
 
 	i = 0;
-	map_data = (char **)malloc(sizeof(char *) * (map->height) + 1);
+	map_data = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map_data)
 		print_error (MALLOC_ERROR);
 	while (i < map->height)

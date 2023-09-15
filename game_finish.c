@@ -6,7 +6,7 @@
 /*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:52:29 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/09/15 18:42:08 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/15 21:01:20 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	clear_game(t_data *data_ptr)
 {
 	printf("%d\nGame Clear!!\n", ++(data_ptr->img.player.move_count));
+	free_double (data_ptr->map.str);
 	close_game(data_ptr, TRUE);
 }
 
@@ -32,8 +33,6 @@ void	destroy_data(t_data *data_ptr)
 	destroy_imgs(data_ptr->mlx, &(data_ptr->img));
 	if (data_ptr->window != NULL)
 		mlx_destroy_window(data_ptr->mlx, data_ptr->window);
-	if (data_ptr->mlx != NULL)
-		free(data_ptr->mlx);
 }
 
 void	destroy_imgs(void *mlx, t_img *img)
@@ -50,7 +49,7 @@ void	destroy_imgs(void *mlx, t_img *img)
 		mlx_destroy_image(mlx, img->exit_img);
 }
 
-void	free_double_point(char **str, char **map_data)
+void	free_double(char **str)
 {
 	int	i;
 
@@ -63,15 +62,5 @@ void	free_double_point(char **str, char **map_data)
 			i++;
 		}
 		free (str);
-	}
-	if (map_data)
-	{
-		i = 0;
-		while (map_data[i])
-		{
-			free (map_data[i]);
-			i++;
-		}
-		free (map_data);
 	}
 }
