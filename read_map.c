@@ -6,7 +6,7 @@
 /*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:24:49 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/09/12 19:11:57 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/13 20:51:02 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void	count_height(int fd, t_map *map)
 		if (str == NULL)
 			break ;
 		(map->height) = (map->height) + 1;
+		free (str);
 		i++;
 	}
 	if (i == 0 && str == NULL)
 		print_error (MAP_ERROR);
-	free (str);
 	close (fd);
 }
 
