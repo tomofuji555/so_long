@@ -6,7 +6,7 @@
 /*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:52:29 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/09/15 21:01:20 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:19:59 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,18 @@
 
 void	clear_game(t_data *data_ptr)
 {
-	printf("%d\nGame Clear!!\n", ++(data_ptr->img.player.move_count));
-	free_double (data_ptr->map.str);
+	ft_printf("%d\nGame Clear!!\n", ++(data_ptr->img.player.move_count));
 	close_game(data_ptr, TRUE);
 }
 
 void	close_game(t_data *data_ptr, int flag)
 {
+	free_double (data_ptr->map.str);
 	destroy_data(data_ptr);
 	if (flag == FALSE)
 		exit(FALSE);
 	else
 		exit(TRUE);
-}
-
-void	destroy_data(t_data *data_ptr)
-{
-	destroy_imgs(data_ptr->mlx, &(data_ptr->img));
-	if (data_ptr->window != NULL)
-		mlx_destroy_window(data_ptr->mlx, data_ptr->window);
 }
 
 void	destroy_imgs(void *mlx, t_img *img)
@@ -47,6 +40,13 @@ void	destroy_imgs(void *mlx, t_img *img)
 		mlx_destroy_image(mlx, img->tile_img);
 	if (img->exit_img != NULL)
 		mlx_destroy_image(mlx, img->exit_img);
+}
+
+void	destroy_data(t_data *data_ptr)
+{
+	destroy_imgs(data_ptr->mlx, &(data_ptr->img));
+	if (data_ptr->window != NULL)
+		mlx_destroy_window(data_ptr->mlx, data_ptr->window);
 }
 
 void	free_double(char **str)

@@ -104,7 +104,7 @@ void	check_map(char **argv, t_map *map)
 	count_elements (map);
 	if (!map_name_correct(argv[1]))
 		print_error (MAP_ERROR);
-	else if (map->width > 25 && map->height > 15)
+	else if (map->width > 26 || map->height > 15)
 		print_error (MAP_ERROR);
 	else if (!is_surrounded_wall(map))
 		print_error (MAP_ERROR);

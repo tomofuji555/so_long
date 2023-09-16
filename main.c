@@ -6,7 +6,7 @@
 /*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:32:38 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/09/15 18:51:17 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:20:52 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,6 @@
 // static void destructor() {
 //     system("leaks -q so_long");
 // }
-
-void	print_error(int num)
-{
-	if (num == ARG_ERROR)
-		ft_printf ("Error\narg_is_invalid\n");
-	else if (num == OPEN_ERROR)
-		ft_printf ("Error\nopen_error\n");
-	else if (num == MALLOC_ERROR)
-		ft_printf ("Error\nmalloc_error\n");
-	else if (num == MAP_ERROR)
-		ft_printf ("Error\nmap_error\n");
-	exit (1);
-}
 
 int	destroy_window_hook(t_data *data_ptr)
 {
@@ -53,7 +40,7 @@ int	key_hook(int key, t_data *data_ptr)
 	else if (key == KEY_S)
 		success = move(&(data_ptr->map), &(data_ptr->img.player), DOWN);
 	else if (key == KEY_ESC)
-		close_game(data_ptr, TRUE);
+		close_game(data_ptr, FALSE);
 	else
 		return (0);
 	if (success == 1)
@@ -61,25 +48,6 @@ int	key_hook(int key, t_data *data_ptr)
 	render_img(data_ptr, data_ptr->img.player.move.p_y, \
 	data_ptr->img.player.move.p_x);
 	render_img(data_ptr, prev_post.p_y, prev_post.p_x);
-	return (0);
-}
-
-int	move(t_map *map, t_player *player, int flag)
-{
-	char	next_val;
-
-	next_val = get_next_val(*map, player->move, flag);
-	if (next_val == '1')
-		return (0);
-	else if (next_val == '0')
-		move_to_tile(map, player, flag);
-	else if (next_val == 'C')
-		move_to_collect(map, player, flag);
-	else if (next_val == 'E' && map->collect_c != map->count_c)
-		move_to_exit(map, player, flag);
-	else if (next_val == 'E' && map->collect_c == map->count_c)
-		return (1);
-	printf("%d\n", ++(player->move_count));
 	return (0);
 }
 
@@ -100,11 +68,11 @@ int	main(int argc, char **argv)
 	map_data = copy_map (&(data.map));
 	check_map (argv, &(data.map));
 	check_path (map_data, &(data.map), &move);
-	init_relate_play (&data);
+	free_double (map_data);
+	init_mlx_img (&data);
 	render_map (&data);
 	mlx_hook (data.window, 02, 1L << 0, key_hook, &data);
 	mlx_hook (data.window, 17, 1L << 17, destroy_window_hook, &data);
 	mlx_loop (data.mlx);
-	free_double_point (data.map.str, map_data);
 	return (0);
 }

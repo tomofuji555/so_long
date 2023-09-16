@@ -6,15 +6,15 @@
 #    By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/31 15:26:11 by tofujiwa          #+#    #+#              #
-#    Updated: 2023/09/15 16:54:06 by tofujiwa         ###   ########.fr        #
+#    Updated: 2023/09/16 16:28:28 by tofujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
-SRCS = check_map.c main.c read_map.c init_relate_map.c check_path.c copy_map.c init_relate_play.c move.c render.c game_finish.c
+SRCS = check_map.c error.c main.c read_map.c init_map.c check_path.c copy_map.c init_mlx_img.c move.c move_utils.c render.c game_finish.c
 OBJS = $(SRCS:.c=.o)
 PRINTF = ft_printf/libftprintf.a
 GNL = get_next_line/get_next_line.a
@@ -25,8 +25,6 @@ $(NAME): $(OBJS)
 	make -C ft_printf
 	make -C get_next_line
 	$(CC) $(CFLAGS) $(OBJS) $(PRINTF) $(GNL) $(MLX_FLAGS) -o $(NAME)
-
-# ft_printf/libftprintf.a noato $(MLX_FLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@

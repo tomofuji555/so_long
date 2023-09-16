@@ -6,7 +6,7 @@
 /*   By: tofujiwa <tofujiwa@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:25:38 by tofujiwa          #+#    #+#             */
-/*   Updated: 2023/09/15 18:25:51 by tofujiwa         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:27:24 by tofujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 
-# define WINDOW_HEIGHT	6
-# define WINDOW_WDTH	8
+# define STDERR 2
 
 enum	e_map_error
 {
@@ -49,8 +48,8 @@ enum e_directon
 
 enum e_bool
 {
-	FALSE	= 0,
-	TRUE	= 1
+	FALSE	= 1,
+	TRUE	= 0
 };
 
 typedef struct s_move
@@ -80,15 +79,14 @@ typedef struct s_map
 typedef struct s_player
 {
 	void	*img;
-	t_move	move; //playerのposition
-	int		move_count; //移動回数
-	// int		collect_num; //集めたcollectの数
+	t_move	move;
+	int		move_count;
 }	t_player;
 
 typedef struct s_img
 {
-	int			width;  //imgのピクセル数　幅
-	int			height;  //imgのピクセル数　高さ
+	int			width;
+	int			height;
 	t_player	player;
 	void		*collect_img;
 	void		*wall_img;
@@ -106,12 +104,13 @@ typedef struct s_data
 
 char	**read_map(char **argv, int fd, t_map *map);
 void	init_relate_map(t_map *map, t_move *move);
+void	ft_putstr_fd(char *s, int fd);
 void	print_error(int num);
 char	**copy_map(t_map *map);
 void	check_map(char **argv, t_map *map);
 void	recursive_dfs(char **map_data, int y, int x);
 void	check_path(char **map_data, t_map *map, t_move *move);
-void	init_relate_play(t_data *data_ptr);
+void	init_mlx_img(t_data *data_ptr);
 void	fill_null_with_data(t_data *data_ptr);
 void	init_imgs(t_data *data_ptr);
 void	render_map(t_data *data_ptr);
@@ -126,6 +125,6 @@ void	clear_game(t_data *data_ptr);
 void	close_game(t_data *data_ptr, int flag);
 void	destroy_data(t_data *data_ptr);
 void	destroy_imgs(void *mlx, t_img *img);
-void	free_double_point(char **str, char **map_data);
+void	free_double(char **str);
 
 #endif
